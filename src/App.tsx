@@ -5,6 +5,8 @@ import RestartIcon from './svgs/restart.svg'
 import { Button } from './components/Button';
 import { InfoItem } from './components/InfoItem';
 import { GridItemType } from './types/GridItemType';
+import { items } from './data/items';
+
 
 const App = () => {
 
@@ -12,11 +14,30 @@ const App = () => {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [moveCount, setMoveCount ] = useState<number>(0);
   const [shownCount, setShownCount ] = useState<number>(0);
-  const [gridItems, setGridItems ] = useState<GridItemType>([]);
+  const [gridItems, setGridItems ] = useState<GridItemType[]>([]);
 
   useEffect(() => resetAndCreateGrid(), []);
 
   const resetAndCreateGrid = () => {
+    // passo 1 - resetar o jogo
+    setTimeElapsed(0);
+    setMoveCount(0);
+    setShownCount(0);
+
+    //passo 2 - criar o grid
+    // passo 2.1 - criar um grid vazio
+    let tmpGrid: GridItemType[] = [];
+    for (let i = 0; i < (items.length * 2); i++) tmpGrid.push({
+      item: null, shown: false, permanentShown: false
+    });
+
+    //passo 2.2 - preencher o grid
+
+    // passo 2.3 - jogar no state
+    setGridItems(tmpGrid);
+
+    //passo 3 - começar o jogo
+    setPlaying(true);
 
   }
     return (
