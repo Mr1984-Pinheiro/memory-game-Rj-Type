@@ -32,6 +32,20 @@ const App = () => {
     });
 
     //passo 2.2 - preencher o grid
+    //Executar um for 2 vezes por repetir duas cartas por jogada
+    for (let w = 0; w < 2; w++ ){
+      //Preencher os 6 seis items em campos aleatorios depois mais seis repetidos
+      for (let i = 0; i < items.length; i++) {
+        //Preencher uma posição enquanto for nullo
+        let pos = -1;
+        while(pos < 0 || tmpGrid[pos].item !==null) {
+          //Gerar uma posição aleatoria das 12 posições ou tamanho disponivel
+          pos = Math.floor(Math.random() * (items.length * 2));
+        } 
+        //preencher a posição com o item a ser exibido
+        tmpGrid[pos].item = i;
+      }
+    }
 
     // passo 2.3 - jogar no state
     setGridItems(tmpGrid);
