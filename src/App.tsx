@@ -3,9 +3,11 @@ import * as C from './App.styles'
 import logoImage from './assets/logo.png'
 import RestartIcon from './svgs/restart.svg'
 import { Button } from './components/Button';
+import { GridItem } from './components/GridItem';
 import { InfoItem } from './components/InfoItem';
 import { GridItemType } from './types/GridItemType';
 import { items } from './data/items';
+
 
 
 const App = () => {
@@ -39,7 +41,7 @@ const App = () => {
         //Preencher uma posição enquanto for nullo
         let pos = -1;
         while(pos < 0 || tmpGrid[pos].item !==null) {
-          //Gerar uma posição aleatoria das 12 posições ou tamanho disponivel
+          //Gerar uma posição aleatoria do tamanho disponivel no caso 12 posições 
           pos = Math.floor(Math.random() * (items.length * 2));
         } 
         //preencher a posição com o item a ser exibido
@@ -54,6 +56,11 @@ const App = () => {
     setPlaying(true);
 
   }
+
+  const handleItemClick = (index: number) => {
+
+  }
+
     return (
       <C.Container>
         <C.Info>
@@ -70,7 +77,13 @@ const App = () => {
         </C.Info>
         <C.GridArea>
           <C.Grid>
-
+              {gridItems.map((item, index)=>(
+                <GridItem 
+                  key={index}
+                  item={item}
+                  onClick={() => handleItemClick(index)}
+                />
+              ))}
           </C.Grid>
         </C.GridArea>
       </C.Container>
