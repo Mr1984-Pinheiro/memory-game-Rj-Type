@@ -30,6 +30,26 @@ const App = () => {
     return () => clearInterval(timer);
   }, [playing, timeElapsed]);
 
+  useEffect(() => {
+      if(shownCount === 2){
+        let opened = gridItems.filter(item => item.shown === true);
+        if(opened.length === 2){
+
+          if(opened[0].item === opened[1].item){
+            let tmpGrid = [...gridItems];
+            for(let i in tmpGrid){
+              if(tmpGrid[i].shown){
+                tmpGrid[i].permanentShown = true;
+                tmpGrid[i].shown = false;
+              }
+            }
+            setGridItems(tmpGrid);
+            setShownCount(0);
+          }
+        }
+      }
+  }, []);
+
   const resetAndCreateGrid = () => {
     // passo 1 - resetar o jogo
     setTimeElapsed(0);
