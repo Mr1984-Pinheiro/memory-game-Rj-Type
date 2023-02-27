@@ -68,7 +68,13 @@ const App = () => {
   }
 
   const handleItemClick = (index: number) => {
-
+    if(playing && index !== null && shownCount < 2){
+        let tmpGridClone = [...gridItems];
+        if(tmpGridClone[index].permanentShown === false && tmpGridClone[index].shown === false){
+          tmpGridClone[index].shown = true;
+          setShownCount(shownCount + 1);
+        }
+    }
   }
 
     return (
@@ -77,7 +83,7 @@ const App = () => {
             <C.LogoLink href="">
                 <img src={logoImage} width="200" alt="" />
             </C.LogoLink>
-
+                ShowCoute:{shownCount}
             <C.InfoArea>
               <InfoItem label="Tempo" value={formatTimeElapsed(timeElapsed)} />
               <InfoItem label='Movimentos' value='0' />
